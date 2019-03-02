@@ -1,0 +1,11 @@
+- model: registries.Registry
+  fields:
+    name: Registry 01
+
+- model: registries.Registry
+  fields:
+    name: Registry 02
+
+- model: registries.Registry
+  fields:
+    name: Registry 03
