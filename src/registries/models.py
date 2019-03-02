@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.urls import reverse
 
 
 class Registry(models.Model):
@@ -20,3 +21,6 @@ class Registry(models.Model):
             "unique": "Registry name must be unique."
         }
     )
+
+    def get_absolute_url(self):
+        return reverse('registry-detail', args=[str(self.id)])
