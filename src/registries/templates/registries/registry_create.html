@@ -1,6 +1,6 @@
-{% include 'material/includes/material_css.html' %}
-{% load material_form %}
+{% extends 'base.html' %}
 
+{% block content %}
 <div class="container">
     <h2>New Registry</h2>
     <form method="post">
@@ -19,3 +19,4 @@
             </div>
     </form>
 </div>
+{% endblock %}

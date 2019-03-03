@@ -1,6 +1,6 @@
-{% include 'material/includes/material_css.html' %}
-{% load material_form %}
+{% extends 'base.html' %}
 
+{% block content %}
 <h2>Registries</h2>
 
 {% if object_list %}
@@ -30,3 +30,4 @@
 {% else %}
 No registries.
 {% endif %}
+{% endblock %}
