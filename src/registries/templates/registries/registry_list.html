@@ -1,10 +1,11 @@
 {% include 'material/includes/material_css.html' %}
 {% load material_form %}
 
-<h1>Registries</h1>
+<h2>Registries</h2>
 
 {% if object_list %}
-<div style="padding-left: 25px; padding-right: 25px;">
+<div class="container">
+    <a href="{% url 'registry-create' %}" class="btn-small btn-floating green" title="Create"><i class="material-icons">add</i></a>
     <table style="width:100%" class="striped">
         <thead>
             <tr>

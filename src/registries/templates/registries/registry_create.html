@@ -1,0 +1,21 @@
+{% include 'material/includes/material_css.html' %}
+{% load material_form %}
+
+<div class="container">
+    <h2>New Registry</h2>
+    <form method="post">
+        {% csrf_token %}
+            {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.label_tag}} {{ field }}
+                {% for error in field.errors %}
+                <div class="red-text text-darken-2">{{error}}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <div style="padding-top: 15px;">
+                <a href="{% url 'registry-list' %}" class="btn waves-effect waves-light grey right" style="margin: 2.5px;">Cancel</a>
+                <input type="submit" class="btn waves-effect waves-light green right" style="margin: 2.5px;" value="Create">
+            </div>
+    </form>
+</div>
