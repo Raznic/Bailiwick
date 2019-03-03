@@ -1,12 +1,11 @@
 from django.contrib import admin
-from django.urls import path
-from registries.views import RegistryListView, RegistryDetailView, RegistryCreateView, RegistryUpdateView, RegistryDeleteView
+from django.views.generic import TemplateView
+from django.urls import path, include
+
+import registries.urls
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
-    path('registries/', RegistryListView.as_view(), name='registry-list'),
-    path('registries/new/', RegistryCreateView.as_view(), name='registry-create'),
-    path('registries/<uuid:pk>/', RegistryDetailView.as_view(), name='registry-detail'),
-    path('registries/<uuid:pk>/edit/', RegistryUpdateView.as_view(), name='registry-update'),
-    path('registries/<uuid:pk>/delete/', RegistryDeleteView.as_view(), name='registry-delete'),
+    path('registries/', include(registries.urls.urlpatterns)),
 ]
