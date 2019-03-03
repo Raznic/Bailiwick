@@ -9,3 +9,39 @@
 - model: registries.Registry
   fields:
     name: Registry 03
+
+- model: registries.Registry
+  fields:
+    name: Registry 04
+
+- model: registries.Registry
+  fields:
+    name: Registry 05
+
+- model: registries.Registry
+  fields:
+    name: Registry 06
+
+- model: registries.Registry
+  fields:
+    name: Registry 07
+
+- model: registries.Registry
+  fields:
+    name: Registry 08
+
+- model: registries.Registry
+  fields:
+    name: Registry 09
+
+- model: registries.Registry
+  fields:
+    name: Registry 10
+
+- model: registries.Registry
+  fields:
+    name: Registry 11
+
+- model: registries.Registry
+  fields:
+    name: Registry 12

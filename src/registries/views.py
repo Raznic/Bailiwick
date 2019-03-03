@@ -8,6 +8,7 @@ from . import models, forms
 class RegistryListView(ListView):
 
     model = models.Registry
+    paginate_by = 10
 
 
 class RegistryDetailView(DetailView):
