@@ -1,21 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <div class="container">
-        {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.label_tag}} {{ field }}
-            {% for error in field.errors %}
-                <div class="red-text text-darken-2">{{error}}</div>
-            {% endfor %}
-        </div>
-        {% endfor %}
-        <div style="padding-top: 15px;">
-            <input type="submit" class="btn waves-effect waves-light green" value="Update">
-            <a href="{% url 'registry-detail' object.id %}" class="btn waves-effect waves-light grey">Cancel</a>
-        </div>
-    </div>
-</form>
+<div class="container">
+    {% include "update_model_form.html" %}
+</div>
 {% endblock %}

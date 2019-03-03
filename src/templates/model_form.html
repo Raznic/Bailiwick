@@ -1,0 +1,13 @@
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.label_tag}} {{ field }}
+        {% for error in field.errors %}
+        <div class="red-text text-darken-2">{{error}}</div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% block form_footer %}
+    {% endblock %}
+</form>
