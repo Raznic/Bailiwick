@@ -1,47 +1,59 @@
 - model: registries.Registry
+  pk: fa432e5a-8e26-40f2-9edb-7401e3abf94b
   fields:
     name: Registry 01
 
 - model: registries.Registry
+  pk: d7d5db9b-2551-42df-aa6f-9c7f4df4fb6b
   fields:
     name: Registry 02
 
 - model: registries.Registry
+  pk: 798729d8-e34a-4e5f-a5db-d0df323d5914
   fields:
     name: Registry 03
 
 - model: registries.Registry
+  pk: 012fcc90-5f17-4e5d-b16c-b5b66a94aa55
   fields:
     name: Registry 04
 
 - model: registries.Registry
+  pk: c8f5e8d1-1dc3-472d-b3d4-207cd05c13cf
   fields:
     name: Registry 05
 
 - model: registries.Registry
+  pk: 1564c6f9-b105-4404-8fd3-55b3f365946a
   fields:
     name: Registry 06
 
 - model: registries.Registry
+  pk: f7cc26da-3d44-45b3-8fb4-a663f5a23d53
   fields:
     name: Registry 07
 
 - model: registries.Registry
+  pk: 2bcdc568-4d48-44ee-99d9-a747f368d3b0
   fields:
     name: Registry 08
 
 - model: registries.Registry
+  pk: 0d0c5a1a-349b-4ba2-956c-c4bc6cc301ed
   fields:
     name: Registry 09
 
 - model: registries.Registry
+  pk: 2f41ef4d-bdbd-4207-ac95-5271d323a9d5
   fields:
     name: Registry 10
 
 - model: registries.Registry
+  pk: e9b69ea6-0a47-4826-b97b-fa646b12fa85
   fields:
     name: Registry 11
 
 - model: registries.Registry
+  pk: b5fbc495-5d9c-4844-8fd4-683fdd51fad4
   fields:
     name: Registry 12

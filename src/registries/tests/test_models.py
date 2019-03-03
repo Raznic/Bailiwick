@@ -18,7 +18,7 @@ class RegistryTestCase(TestCase):
             ]
         }
         with self.assertRaisesMessage(ValidationError, str(expected_errors)):
-            factory.RegistryFactory.build(name="").full_clean()
+            factory.RegistryFactory.create(name="").full_clean()
 
     def test_long_name(self):
         """
@@ -31,7 +31,7 @@ class RegistryTestCase(TestCase):
         }
         name = "Registry " + "A" * 120
         with self.assertRaisesMessage(ValidationError, str(expected_errors)):
-            factory.RegistryFactory.build(name=name).full_clean()
+            factory.RegistryFactory.create(name=name).full_clean()
 
     def test_unique_name(self):
         """
@@ -45,4 +45,4 @@ class RegistryTestCase(TestCase):
         name = "My Registry"
         factory.RegistryFactory.create(name=name)
         with self.assertRaisesMessage(ValidationError, str(expected_errors)):
-            factory.RegistryFactory.build(name=name).full_clean()
+            factory.RegistryFactory.build(name=name).validate_unique()

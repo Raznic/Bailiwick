@@ -1,0 +1,35 @@
+- model: domains.Domain
+  pk: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+  fields:
+    name: example.com
+    registry: fa432e5a-8e26-40f2-9edb-7401e3abf94b
+
+- model: domains.Domain
+  pk: 18c26a35-fdd2-421d-9237-1a8b3d7f406f
+  fields:
+    name: example.org
+    registry: fa432e5a-8e26-40f2-9edb-7401e3abf94b
+
+- model: domains.Domain
+  pk: 89d2d965-5e05-408d-9e66-a9396c4df5af
+  fields:
+    name: example.net
+    registry: fa432e5a-8e26-40f2-9edb-7401e3abf94b
+
+- model: domains.Domain
+  pk: 2fdadc22-a763-4ef3-b16e-792c3edaae63
+  fields:
+    name: example.us
+    registry: d7d5db9b-2551-42df-aa6f-9c7f4df4fb6b
+
+- model: domains.Domain
+  pk: e5f9deaf-f85a-438c-863a-b884678d12e9
+  fields:
+    name: example.co.uk
+    registry: d7d5db9b-2551-42df-aa6f-9c7f4df4fb6b
+
+- model: domains.Domain
+  pk: c60f822c-b3ff-449b-9f19-ba12ec806cc7
+  fields:
+    name: example.io
+    registry: d7d5db9b-2551-42df-aa6f-9c7f4df4fb6b
