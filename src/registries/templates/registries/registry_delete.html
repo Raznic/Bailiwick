@@ -1,0 +1,14 @@
+{% include 'material/includes/material_css.html' %}
+{% load material_form %}
+
+<div class="container">
+    <h2>Delete Registry</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{ object.name }}?</p>
+        <div style="padding-top: 15px;">
+            <a href="{% url 'registry-list' %}" class="btn waves-effect waves-light grey right" style="margin: 2.5px;">Cancel</a>
+            <input type="submit" class="btn waves-effect waves-light red right" style="margin: 2.5px;" value="Delete">
+        </div>
+    </form>
+</div>

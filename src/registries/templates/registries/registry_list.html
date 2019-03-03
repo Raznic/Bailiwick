@@ -20,7 +20,7 @@
                 <td style="white-space: nowrap;">
                     <a href="{% url 'registry-detail' registry.id %}" class="btn-small btn-floating" title="View"><i class="material-icons">info_outline</i></a>
                     <a href="{% url 'registry-update' registry.id %}" class="btn-small btn-floating blue" title="Edit"><i class="material-icons">edit</i></a>
-                    <a class="btn-small btn-floating red" title="Delete"><i class="material-icons">delete</i></a>
+                    <a href="{% url 'registry-delete' registry.id %}" class="btn-small btn-floating red" title="Delete"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
         {% endfor %}
