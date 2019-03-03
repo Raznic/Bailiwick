@@ -9,6 +9,7 @@ class RegistryListView(ListView):
 
     model = models.Registry
     paginate_by = 10
+    ordering = ['name']
 
 
 class RegistryDetailView(DetailView):
