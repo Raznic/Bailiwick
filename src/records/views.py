@@ -9,7 +9,7 @@ class ARecordListView(ListView):
 
     model = models.ARecord
     paginate_by = 10
-    ordering = ['hostname', 'domain']
+    ordering = ['hostname', 'domain', 'address']
     template_name = "records/a_record_list.html"
 
 

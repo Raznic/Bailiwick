@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="center">{% block title %}{% endblock %}</h2>
+
+<div class="container">
+    <table style="width:100%" class="striped">
+        <thead>
+        <tr>
+            {% block table_header_cols %}
+            {% endblock %}
+            <th style="width: 0.1%;">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in object_list %}
+        <tr>
+            {% block table_body_cols %}
+            {% endblock %}
+            <td style="white-space: nowrap; width: 0.1%;">
+                <a href="{% block detail-view %}{% endblock %}" class="btn-small btn-floating" title="View"><i class="material-icons">info_outline</i></a>
+                <a href="{% block update-view %}{% endblock %}" class="btn-small btn-floating blue" title="Update"><i class="material-icons">edit</i></a>
+                <a href="{% block delete-view %}{% endblock %}" class="btn-small btn-floating red" title="Delete"><i class="material-icons">delete</i></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="valign-wrapper">
+        <div>
+            <a href="{% block create-view %}{% endblock %}" class="btn-small btn-floating green" title="Create"><i class="material-icons">add</i></a>
+        </div>
+        <div style="margin: auto;">
+            {% include 'pagination.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
