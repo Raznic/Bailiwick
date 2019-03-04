@@ -44,3 +44,6 @@ class ARecord(models.Model):
         help_text="Time in seconds for how long record should be cached by a resolver. " +
                   "If not set, inherited from domain."
     )
+
+    def __str__(self):
+        return self.hostname

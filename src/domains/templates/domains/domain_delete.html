@@ -1,8 +1,3 @@
-{% extends 'base.html' %}
+{% extends 'model_delete.html' %}
 
-{% block content %}
-<div class="container">
-    <h2>Delete Domain</h2>
-    {% include "delete_model_form.html" with title=object.name %}
-</div>
-{% endblock %}
+{% block title%}Delete Domain{% endblock %}
