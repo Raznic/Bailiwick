@@ -1,0 +1,41 @@
+- model: records.ARecord
+  pk: 254e43d2-58bd-4eff-9fe4-a7d43de62bd7
+  fields:
+    hostname: ns-01
+    address: 192.168.1.10
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.ARecord
+  pk: bc611ce5-0885-443d-b51f-cc3ae1ee0ddc
+  fields:
+    hostname: ns-02
+    address: 192.168.1.11
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.ARecord
+  pk: 750796f7-50f6-41a9-bbc3-4a7de25252c7
+  fields:
+    hostname: www
+    address: 192.168.1.20
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.ARecord
+  pk: b912ceb2-5e1b-4074-a0e3-643aa795aa32
+  fields:
+    hostname: www
+    address: 192.168.1.21
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.ARecord
+  pk: 5f577cdb-78d4-45b8-bd18-f38c98284c09
+  fields:
+    hostname: mail
+    address: 192.168.1.30
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.ARecord
+  pk: 86cb0396-7a03-48de-918d-664ddc054729
+  fields:
+    hostname: ftp
+    address: 192.168.1.40
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7

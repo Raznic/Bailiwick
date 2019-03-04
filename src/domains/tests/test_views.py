@@ -6,4 +6,3 @@ from .. import factory
 class DomainViewTestCase(ModelViewTestSuite, TestCase):
     root_url = "domains"
     model_factory = factory.DomainFactory
-

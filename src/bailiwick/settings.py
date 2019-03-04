@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'material',
     'domains.apps.DomainsConfig',
+    'records.apps.RecordsConfig',
     'registries.apps.RegistriesConfig',
 ]
 

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Delete A Record</h2>
+    {% include "delete_model_form.html" with title=object.hostname %}
+</div>
+{% endblock %}

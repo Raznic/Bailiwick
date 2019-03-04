@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="center">A Records</h2>
+
+{% if object_list %}
+<div class="container">
+    <a href="{% url 'a-record-create' %}" class="btn-small btn-floating green" title="Create"><i class="material-icons">add</i></a>
+    <table style="width:100%" class="striped">
+        <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>Address</th>
+            <th>Domain</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in object_list %}
+        <tr>
+            <td>{{ obj.hostname }}</td>
+            <td>{{ obj.address}}</td>
+            <td style="width: 100%;">{{ obj.domain.name }}</td>
+            <td style="white-space: nowrap;">
+                <a href="{% url 'a-record-detail' obj.id %}" class="btn-small btn-floating" title="View"><i class="material-icons">info_outline</i></a>
+                <a href="{% url 'a-record-update' obj.id %}" class="btn-small btn-floating blue" title="Edit"><i class="material-icons">edit</i></a>
+                <a href="{% url 'a-record-delete' obj.id %}" class="btn-small btn-floating red" title="Delete"><i class="material-icons">delete</i></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include 'pagination.html' %}
+</div>
+{% else %}
+No A records.
+{% endif %}
+{% endblock %}
+
