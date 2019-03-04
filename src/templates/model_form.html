@@ -1,8 +1,14 @@
 <form method="post">
     {% csrf_token %}
     {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.label_tag}} {{ field }}
+    <div class="fieldWrapper" style="padding-top: 5px;">
+        <div class="valign-wrapper">
+            {{ field.label_tag}}
+            {% if field.help_text %}
+            <i class="material-icons tiny tooltipped" style="padding-left: 5px;" data-position="right" data-tooltip="{{ field.help_text }}">info</i>
+            {% endif %}
+        </div>
+        {{ field }}
         {% for error in field.errors %}
         <div class="red-text text-darken-2">{{error}}</div>
         {% endfor %}
