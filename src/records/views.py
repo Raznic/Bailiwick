@@ -18,6 +18,16 @@ class ARecordDetailView(DetailView):
     model = models.ARecord
     template_name = "records/a_record_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['fields'] = {
+            "Hostname": self.object.hostname,
+            "Address": self.object.address,
+            "Domain": self.object.domain.name,
+            "Time-to-live": self.object.time_to_live,
+        }
+        return context
+
 
 class ARecordCreateView(CreateView):
 
