@@ -1,10 +1,14 @@
+<ul id="record-dropdown" class="dropdown-content">
+    <li><a href="{% url 'a-record-list' %}">A Records</a></li>
+</ul>
+
 <nav>
     <div class="nav-wrapper blue">
         <a href="/" class="brand-logo" style="padding-left: 10px;">Bailiwick</a>
         <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'registry-list' %}">Registries</a></li>
             <li><a href="{% url 'domain-list' %}">Domains</a></li>
-            <li><a href="{% url 'a-record-list' %}">A Records</a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="record-dropdown">Records<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </div>
 </nav>
