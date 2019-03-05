@@ -19,3 +19,12 @@ class NsRecordFactory(factory.django.DjangoModelFactory):
 
     name_server = factory.Faker('hostname')
     domain = factory.SubFactory('domains.factory.DomainFactory')
+
+
+class MxRecordFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = models.MxRecord
+
+    mail_exchange = factory.Faker('hostname')
+    domain = factory.SubFactory('domains.factory.DomainFactory')

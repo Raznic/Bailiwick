@@ -1,9 +1,9 @@
-import re
 import uuid
-from django.core import validators, exceptions
+from django.core.validators import RegexValidator, validate_ipv4_address
 from django.db import models
 from django.urls import reverse
 from bailiwick import regex
+from . import validators
 
 
 class ARecord(models.Model):
@@ -18,21 +18,21 @@ class ARecord(models.Model):
         max_length=63,
         blank=False,
         validators=[
-            validators.RegexValidator(
+            RegexValidator(
                 regex=regex.HOSTNAME_REGEX,
                 message="Not a valid hostname."
             ),
         ],
         error_messages={
-            "blank": "Hostname cannot be blank.",
-            "max_length": "Hostname cannot exceed 63 characters.",
+            "blank": "Cannot be blank.",
+            "max_length": "Cannot exceed 63 characters.",
         }
     )
     address = models.GenericIPAddressField(
         protocol="IPv4",
         blank=False,
         validators=[
-            validators.validate_ipv4_address,
+           validate_ipv4_address,
         ]
     )
     domain = models.ForeignKey(
@@ -67,14 +67,14 @@ class NsRecord(models.Model):
         max_length=255,
         blank=False,
         validators=[
-            validators.RegexValidator(
+            RegexValidator(
                 regex=regex.FQDN_REGEX,
                 message="Name server must by a fully-qualified domain name."
             ),
         ],
         error_messages={
-            "blank": "Name server cannot be blank.",
-            "max_length": "Name server cannot exceed 255 characters.",
+            "blank": "Cannot be blank.",
+            "max_length": "Cannot exceed 255 characters.",
         }
     )
     owner = models.CharField(
@@ -82,13 +82,13 @@ class NsRecord(models.Model):
         default="",
         blank=True,
         validators=[
-            validators.RegexValidator(
+            RegexValidator(
                 regex=regex.FQDN_REGEX,
                 message="Owner must be a fully-qualified domain name."
             ),
         ],
         error_messages={
-            "max_length": "Owner cannot exceed 255 characters.",
+            "max_length": "Cannot exceed 255 characters.",
         },
         help_text="The domain the name server is authoritative for. Can be the current domain or a sub-domain. " +
                   "If not defined, assume the name server is authoritative for the current domain."
@@ -113,9 +113,70 @@ class NsRecord(models.Model):
         return reverse('ns-record-detail', args=[str(self.id)])
 
     def clean(self):
-        # Ensure owner is a sub-domain of associated domain object
-        subdomain_regex = f"^([a-z0-9]+(-[a-z0-9]+)*\\.)*{self.domain.name}$"
-        if self.owner and not re.match(re.compile(subdomain_regex), str(self.owner)):
-            raise exceptions.ValidationError({
-                "owner": "Owner must either be the current domain or a sub-domain."
-            })
+        validators.validate_owner_subdomain(str(self.owner), self.domain.name)
+
+
+class MxRecord(models.Model):
+
+    id = models.UUIDField(
+        primary_key=True,
+        unique=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+    mail_exchange = models.CharField(
+        max_length=255,
+        blank=False,
+        validators=[
+            RegexValidator(
+                regex=regex.FQDN_REGEX,
+                message="Must be a fully-qualified domain name."
+            ),
+        ],
+        error_messages={
+            "blank": "Cannot be blank.",
+            "max_length": "Cannot exceed 255 characters.",
+        }
+    )
+    owner = models.CharField(
+        max_length=255,
+        default="",
+        blank=True,
+        validators=[
+            RegexValidator(
+                regex=regex.FQDN_REGEX,
+                message="Owner must be a fully-qualified domain name."
+            ),
+        ],
+        error_messages={
+            "max_length": "Cannot exceed 255 characters.",
+        },
+        help_text="The domain the mail exchange is authoritative for. Can be the current domain or a sub-domain. " +
+                  "If not defined, assume the mail exchange is authoritative for the current domain."
+    )
+    preference = models.PositiveIntegerField(
+        default=10,
+        help_text="Preference for using this mail exchange server over others. " +
+                  "Lower values indicate a higher preference."
+    )
+    domain = models.ForeignKey(
+        "domains.Domain",
+        on_delete=models.CASCADE,
+        related_name="mx_records",
+    )
+    time_to_live = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        default=None,
+        help_text="Time in seconds for how long record should be cached by a resolver. " +
+                  "If not set, inherited from domain."
+    )
+
+    def __str__(self):
+        return self.mail_exchange
+
+    def get_absolute_url(self):
+        return reverse('mx-record-detail', args=[str(self.id)])
+
+    def clean(self):
+        validators.validate_owner_subdomain(str(self.owner), self.domain.name)

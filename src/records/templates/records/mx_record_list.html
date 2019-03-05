@@ -1,0 +1,22 @@
+{% extends "model_list.html" %}
+
+{% block title %}MX Records{% endblock %}
+
+{% block create-view %}{% url "mx-record-create" %}{% endblock %}
+{% block detail-view %}{% url "mx-record-detail" obj.id %}{% endblock %}
+{% block update-view %}{% url "mx-record-update" obj.id %}{% endblock %}
+{% block delete-view %}{% url "mx-record-delete" obj.id %}{% endblock %}
+
+{% block table_header_cols %}
+<th>Mail Exchange</th>
+<th>Domain</th>
+<th>Owner</th>
+<th>Preference</th>
+{% endblock %}
+
+{% block table_body_cols %}
+<td>{{ obj.mail_exchange}}</td>
+<td>{{ obj.domain.name }}</td>
+<td>{{ obj.owner }}</td>
+<td>{{ obj.preference}}</td>
+{% endblock %}

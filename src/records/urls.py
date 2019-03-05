@@ -12,4 +12,9 @@ urlpatterns = [
     path('ns/<uuid:pk>/', views.NsRecordDetailView.as_view(), name='ns-record-detail'),
     path('ns/<uuid:pk>/edit/', views.NsRecordUpdateView.as_view(), name='ns-record-update'),
     path('ns/<uuid:pk>/delete/', views.NsRecordDeleteView.as_view(), name='ns-record-delete'),
+    path('mx/', views.MxRecordListView.as_view(), name='mx-record-list'),
+    path('mx/new/', views.MxRecordCreateView.as_view(), name='mx-record-create'),
+    path('mx/<uuid:pk>/', views.MxRecordDetailView.as_view(), name='mx-record-detail'),
+    path('mx/<uuid:pk>/edit/', views.MxRecordUpdateView.as_view(), name='mx-record-update'),
+    path('mx/<uuid:pk>/delete/', views.MxRecordDeleteView.as_view(), name='mx-record-delete'),
 ]

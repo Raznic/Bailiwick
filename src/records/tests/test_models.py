@@ -14,7 +14,7 @@ class ARecordTestCase(TestCase):
         """
         expected_errors = {
             "hostname": [
-                "Hostname cannot be blank."
+                "Cannot be blank."
             ]
         }
         with self.assertRaisesMessage(ValidationError, str(expected_errors)):
@@ -26,7 +26,7 @@ class ARecordTestCase(TestCase):
         """
         expected_errors = {
             "hostname": [
-                "Hostname cannot exceed 63 characters."
+                "Cannot exceed 63 characters."
             ]
         }
         name = "a" * 64
@@ -63,7 +63,7 @@ class NsRecordTestCase(TestCase):
         """
         expected_errors = {
             "name_server": [
-                "Name server cannot exceed 255 characters."
+                "Cannot exceed 255 characters."
             ]
         }
         name = "test." * 51 + "local"
@@ -76,7 +76,7 @@ class NsRecordTestCase(TestCase):
         """
         expected_errors = {
             "owner": [
-                "Owner cannot exceed 255 characters."
+                "Cannot exceed 255 characters."
             ]
         }
         name = "test." * 51 + "local"
@@ -108,3 +108,61 @@ class NsRecordTestCase(TestCase):
             factory.NsRecordFactory.create(domain=domain, owner="aexample.com").full_clean()
         with self.assertRaisesMessage(ValidationError, str(expected_errors)):
             factory.NsRecordFactory.create(domain=domain, owner="example.com.org").full_clean()
+
+
+class MxRecordTestCase(TestCase):
+    """
+    Test case for MX records.
+    """
+
+    def test_long_mail_exhange(self):
+        """
+        Ensure mail_exchange cannot exceed 255 characters.
+        """
+        expected_errors = {
+            "mail_exchange": [
+                "Cannot exceed 255 characters."
+            ]
+        }
+        name = "test." * 51 + "local"
+        with self.assertRaisesMessage(ValidationError, str(expected_errors)):
+            factory.MxRecordFactory.create(mail_exchange=name).full_clean()
+
+    def test_long_owner(self):
+        """
+        Ensure owner cannot exceed 255 characters.
+        """
+        expected_errors = {
+            "owner": [
+                "Cannot exceed 255 characters."
+            ]
+        }
+        name = "test." * 51 + "local"
+        with self.assertRaisesMessage(ValidationError, str(expected_errors)):
+            factory.MxRecordFactory.create(
+                domain=DomainFactory.create(name="local"),
+                owner=name
+            ).full_clean()
+
+    def test_owner_subdomain(self):
+        """
+        Verify that the owner must always be either the current domain or a sub-domain.
+        """
+        expected_errors = {
+            "owner": [
+                "Owner must either be the current domain or a sub-domain."
+            ]
+        }
+        domain = DomainFactory.create(name="example.com")
+        # Good
+        factory.MxRecordFactory.create(domain=domain, owner="").full_clean()
+        factory.MxRecordFactory.create(domain=domain, owner="example.com").full_clean()
+        factory.MxRecordFactory.create(domain=domain, owner="test.example.com").full_clean()
+        factory.MxRecordFactory.create(domain=domain, owner="sub.test.example.com").full_clean()
+        # Bad
+        with self.assertRaisesMessage(ValidationError, str(expected_errors)):
+            factory.MxRecordFactory.create(domain=domain, owner="example.org").full_clean()
+        with self.assertRaisesMessage(ValidationError, str(expected_errors)):
+            factory.MxRecordFactory.create(domain=domain, owner="aexample.com").full_clean()
+        with self.assertRaisesMessage(ValidationError, str(expected_errors)):
+            factory.MxRecordFactory.create(domain=domain, owner="example.com.org").full_clean()

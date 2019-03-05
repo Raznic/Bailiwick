@@ -11,3 +11,8 @@ class ARecordViewTestCase(ModelViewTestSuite, TestCase):
 class NsRecordViewTestCase(ModelViewTestSuite, TestCase):
     root_url = "records/ns"
     model_factory = factory.NsRecordFactory
+
+
+class MxRecordViewTestCase(ModelViewTestSuite, TestCase):
+    root_url = "records/mx"
+    model_factory = factory.MxRecordFactory

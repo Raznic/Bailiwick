@@ -95,3 +95,50 @@ class NsRecordDeleteView(DeleteView):
     model = models.NsRecord
     template_name = "records/ns_record_delete.html"
     success_url = reverse_lazy('ns-record-list')
+
+
+class MxRecordListView(ListView):
+
+    model = models.MxRecord
+    paginate_by = 10
+    ordering = ['domain', 'mail_exchange', 'owner']
+    template_name = "records/mx_record_list.html"
+
+
+class MxRecordDetailView(DetailView):
+
+    model = models.MxRecord
+    template_name = "records/mx_record_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['fields'] = {
+            "Mail Exchange": self.object.mail_exchange,
+            "Domain": self.object.domain.name,
+            "Owner": self.object.owner,
+            "Preference": self.object.preference,
+            "Time-to-live": self.object.time_to_live,
+        }
+        return context
+
+
+class MxRecordCreateView(CreateView):
+
+    model = models.MxRecord
+    form_class = forms.MxRecordForm
+    template_name = "records/mx_record_create.html"
+    success_url = reverse_lazy('mx-record-list')
+
+
+class MxRecordUpdateView(UpdateView):
+
+    model = models.MxRecord
+    form_class = forms.MxRecordForm
+    template_name = "records/mx_record_update.html"
+
+
+class MxRecordDeleteView(DeleteView):
+
+    model = models.MxRecord
+    template_name = "records/mx_record_delete.html"
+    success_url = reverse_lazy('mx-record-list')

@@ -47,3 +47,22 @@ class NsRecordForm(RecordForm):
                 }
             ),
         }
+
+
+class MxRecordForm(RecordForm):
+
+    class Meta:
+        model = models.MxRecord
+        exclude = ["id"]
+        widgets = {
+            "mail_exchange": TextInput(
+                attrs={
+                    "class": "validate",
+                }
+            ),
+            "owner": TextInput(
+                attrs={
+                    "class": "validate",
+                }
+            ),
+        }

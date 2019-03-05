@@ -39,3 +39,39 @@
     hostname: ftp
     address: 192.168.1.40
     domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.NsRecord
+  pk: 2f2d9757-fa8d-4025-8047-7db269420048
+  fields:
+    name_server: ns-01.example.com
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.NsRecord
+  pk: b08cfa4e-3765-4036-b705-0e930e2022a6
+  fields:
+    name_server: ns-02.example.com
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.NsRecord
+  pk: bf0ab4d2-bffd-4ee4-9629-b394632ac3e5
+  fields:
+    name_server: ns-01.example.org
+    domain: 18c26a35-fdd2-421d-9237-1a8b3d7f406f
+
+- model: records.NsRecord
+  pk: 4ce69310-8a9f-4e61-9a0a-9bb4bb05dcd5
+  fields:
+    name_server: ns-02.example.org
+    domain: 18c26a35-fdd2-421d-9237-1a8b3d7f406f
+
+- model: records.MxRecord
+  pk: baf29582-e680-496f-8bcc-29fa4aa6b3d6
+  fields:
+    mail_exchange: mail.example.com
+    domain: d5c43410-1a1a-418a-ba46-b91a03b85eb7
+
+- model: records.MxRecord
+  pk: de01a27a-110e-4aff-9da6-0f2cee347bdd
+  fields:
+    mail_exchange: mail.example.org
+    domain: 18c26a35-fdd2-421d-9237-1a8b3d7f406f
