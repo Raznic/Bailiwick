@@ -2,6 +2,7 @@ import uuid
 from django.core import validators
 from django.db import models
 from django.urls import reverse
+from bailiwick import regex
 
 
 class Domain(models.Model):
@@ -18,9 +19,7 @@ class Domain(models.Model):
         unique=True,
         validators=[
             validators.RegexValidator(
-                # Regex obtained from O'Reilly Regular Expressions Cookbook
-                # https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch08s15.html
-                regex=r"^((?=[a-z0-9-]{1,63}\.)[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}$",
+                regex=regex.FQDN_REGEX,
                 message="Not a valid domain name."
             )
         ],

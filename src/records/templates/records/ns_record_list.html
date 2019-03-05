@@ -1,0 +1,20 @@
+{% extends "model_list.html" %}
+
+{% block title %}NS Records{% endblock %}
+
+{% block create-view %}{% url "ns-record-create" %}{% endblock %}
+{% block detail-view %}{% url "ns-record-detail" obj.id %}{% endblock %}
+{% block update-view %}{% url "ns-record-update" obj.id %}{% endblock %}
+{% block delete-view %}{% url "ns-record-delete" obj.id %}{% endblock %}
+
+{% block table_header_cols %}
+<th>Name Server</th>
+<th>Domain</th>
+<th>Owner</th>
+{% endblock %}
+
+{% block table_body_cols %}
+<td>{{ obj.name_server }}</td>
+<td>{{ obj.domain.name }}</td>
+<td>{{ obj.owner }}</td>
+{% endblock %}
